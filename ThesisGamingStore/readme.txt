@@ -1,4 +1,9 @@
-﻿To use this template with Windows Azure authentication, refer to http://go.microsoft.com/fwlink/?LinkID=267940.
+﻿My project is focus on web programming in online marketing. Design data storage efficiency,
+easy to use in ASP.NET programming with MVC pattern
+
+===============================================================================================================
+
+To use this template with Windows Azure authentication, refer to http://go.microsoft.com/fwlink/?LinkID=267940.
 
 Otherwise, to use this template with Windows authentication, refer to the instructions below:
 
