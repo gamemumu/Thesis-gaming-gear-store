@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c99c077f70541b0ba24e9875bf948de" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="gamingstoreModel.C_Roles" Width="1.5" PointX="1.5" PointY="4.375" />
+        <EntityTypeShape EntityType="gamingstoreModel.BANK" Width="1.5" PointX="11.25" PointY="1.25" />
+        <EntityTypeShape EntityType="gamingstoreModel.BRAND" Width="1.5" PointX="3" PointY="13.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.CLAIM_MEMBER" Width="1.5" PointX="21.75" PointY="5.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.CLAIM_MEMBER_CHANG7DAY" Width="1.5" PointX="21.75" PointY="12.5" />
+        <EntityTypeShape EntityType="gamingstoreModel.CLAIM_MEMBER_DTA" Width="1.5" PointX="24" PointY="8.75" />
+        <EntityTypeShape EntityType="gamingstoreModel.CLAIMORDER" Width="1.5" PointX="15" PointY="8.875" />
+        <EntityTypeShape EntityType="gamingstoreModel.CLAIMORDER_DTA" Width="1.5" PointX="17.25" PointY="9.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.CLAIMORDER_SHOP" Width="1.5" PointX="24" PointY="13.375" />
+        <EntityTypeShape EntityType="gamingstoreModel.COLOR" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.DELIVER" Width="1.5" PointX="10.5" PointY="4.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.DEPARTMENT" Width="1.5" PointX="1.5" PointY="6.875" />
+        <EntityTypeShape EntityType="gamingstoreModel.EMPLOYEE" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="gamingstoreModel.EMPLOYEE_PHONE" Width="1.5" PointX="8.25" PointY="27.25" />
+        <EntityTypeShape EntityType="gamingstoreModel.MEMBER" Width="1.5" PointX="6" PointY="6.75" />
+        <EntityTypeShape EntityType="gamingstoreModel.MEMBER_PHONE" Width="1.5" PointX="8.25" PointY="24.5" />
+        <EntityTypeShape EntityType="gamingstoreModel.OFFER" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="gamingstoreModel.OFFERDETAIL" Width="1.5" PointX="10.5" PointY="12.75" />
+        <EntityTypeShape EntityType="gamingstoreModel.ORDER_PRODUCT" Width="1.5" PointX="10.5" PointY="16.875" />
+        <EntityTypeShape EntityType="gamingstoreModel.ORDER_PRODUCT_DTA" Width="1.5" PointX="12.75" PointY="13" />
+        <EntityTypeShape EntityType="gamingstoreModel.PAYMENT" Width="1.5" PointX="13.5" PointY="4.875" />
+        <EntityTypeShape EntityType="gamingstoreModel.PHOTO" Width="1.5" PointX="7.5" PointY="14.75" />
+        <EntityTypeShape EntityType="gamingstoreModel.POSITION" Width="1.5" PointX="3.75" PointY="5.375" />
+        <EntityTypeShape EntityType="gamingstoreModel.PRODUCT" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="gamingstoreModel.PRODUCTLOT" Width="1.5" PointX="17.25" PointY="12.625" />
+        <EntityTypeShape EntityType="gamingstoreModel.PRODUCTSUPPLIER" Width="1.5" PointX="7.5" PointY="11.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.PROMOTION" Width="1.5" PointX="7.5" PointY="21.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.RECEIVECLAIM" Width="1.5" PointX="17.25" PointY="6.25" />
+        <EntityTypeShape EntityType="gamingstoreModel.RECEIVECLAIM_DTA" Width="1.5" PointX="19.5" PointY="6.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.RECEIVEORDER" Width="1.5" PointX="12.75" PointY="9.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.RECEIVEORDER_DTA" Width="1.5" PointX="15" PointY="13" />
+        <EntityTypeShape EntityType="gamingstoreModel.SELLPRODUCT" Width="1.5" PointX="8.25" PointY="6.5" />
+        <EntityTypeShape EntityType="gamingstoreModel.SELLPRODUCT_DTA" Width="1.5" PointX="10.5" PointY="8.75" />
+        <EntityTypeShape EntityType="gamingstoreModel.SELLPRODUCT_DTA_NO_SERIA" Width="1.5" PointX="19.5" PointY="9.125" />
+        <EntityTypeShape EntityType="gamingstoreModel.SELLPRODUCT_DTA_SERIA" Width="1.5" PointX="21.75" PointY="8.875" />
+        <EntityTypeShape EntityType="gamingstoreModel.SERIAL" Width="1.5" PointX="19.5" PointY="12.875" />
+        <EntityTypeShape EntityType="gamingstoreModel.SUPPLIER" Width="1.5" PointX="5.25" PointY="17.875" />
+        <EntityTypeShape EntityType="gamingstoreModel.SUPPLIER_PHONE" Width="1.5" PointX="7.5" PointY="18.25" />
+        <EntityTypeShape EntityType="gamingstoreModel.TRADEMARK" Width="1.5" PointX="0.75" PointY="13.375" />
+        <EntityTypeShape EntityType="gamingstoreModel.TYPEPRODUCT" Width="1.5" PointX="3" PointY="16.625" />
+        <AssociationConnector Association="gamingstoreModel.FK_PAYMENT_BANK" />
+        <AssociationConnector Association="gamingstoreModel.FK_BRAN_TRADEMARK" />
+        <AssociationConnector Association="gamingstoreModel.FK_PRODUCT_BRAND" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIM_MEMBER_DTA_CLAIM_MEMBER" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIM_MEMBER_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIM_MEMBER_CHANG7DAY_CLAIM_MEMBER_CHANG7DAY" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIM_MEMBER_CHANG7DAY_SERIAL" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIM_MEMBER_DTA_SELLPRODUCT_DTA_SERIA" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIMORDER_DTA_CLAIMORDER" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIMORDER_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIMORDER_SUPPLIER" />
+        <AssociationConnector Association="gamingstoreModel.FK_CLAIM_SHOP_CLAIMORDER_DTA" />
+        <AssociationConnector Association="gamingstoreModel.FK_RECEIVECLAIM_DTA_CLAIMORDER_DTA" />
+        <AssociationConnector Association="gamingstoreModel.FK_PRODUCT_COLOR1" />
+        <AssociationConnector Association="gamingstoreModel.FK_DELIVER_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_DELIVER_SELLPRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_POSITION_DEPARTMENT" />
+        <AssociationConnector Association="gamingstoreModel.FK_EMPLOYEE_POSITION" />
+        <AssociationConnector Association="gamingstoreModel.FK_EMPLOYEE_TEL_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_OFFER_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_ORDER_PRODUCT_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_RECEIVECLAIM_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_RECEIVEORDER_EMPLOYEE" />
+        <AssociationConnector Association="gamingstoreModel.FK_MEMBER_PHONE_MEMBER" />
+        <AssociationConnector Association="gamingstoreModel.FK_SELLPRODUCT_MEMBER" />
+        <AssociationConnector Association="gamingstoreModel.FK_OFFER_SUPPLIER" />
+        <AssociationConnector Association="gamingstoreModel.FK_OFFERDETAIL_OFFER" />
+        <AssociationConnector Association="gamingstoreModel.FK_OFFERDETAIL_PRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_ORDER_PRODUCT_DTA_OFFERDETAIL" />
+        <AssociationConnector Association="gamingstoreModel.FK_ORDER_PRODUCT_DTA_ORDER_PRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_ORDER_PRODUCT_SUPPLIER" />
+        <AssociationConnector Association="gamingstoreModel.FK_RECEIVEORDER_DTA_ORDER_PRODUCT_DTA" />
+        <AssociationConnector Association="gamingstoreModel.FK_PAYMENT_SELLPRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_PHOTO_PRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_PRODUCT_TYPEPRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_PRODUCTLOT_PRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_PRODUCTSUPPLIER_PRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_SELLPRODUCT_DTA_PRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_PRODUCTLOT_RECEIVEORDER_DTA" />
+        <AssociationConnector Association="gamingstoreModel.FK_SELLPRODUCT_DTA_NO_SERIA_PRODUCTLOT" />
+        <AssociationConnector Association="gamingstoreModel.FK_SERIAL_PRODUCTLOT" />
+        <AssociationConnector Association="gamingstoreModel.FK_PRODUCTSUPPLIER_SUPPLIER" />
+        <AssociationConnector Association="gamingstoreModel.FK_RECEIVECLAIM_DTA_RECEIVECLAIM" />
+        <AssociationConnector Association="gamingstoreModel.FK_RECEIVEORDER_DTA_RECEIVEORDER" />
+        <AssociationConnector Association="gamingstoreModel.FK_SELLPRODUCT_DTA_SELLPRODUCT" />
+        <AssociationConnector Association="gamingstoreModel.FK_SELLPRODUCT_DTA_NO_SERIA_SELLPRODUCT_DTA" />
+        <AssociationConnector Association="gamingstoreModel.FK_SELLPRODUCT_DTA_SERIA_SELLPRODUCT_DTA" />
+        <AssociationConnector Association="gamingstoreModel.FK_SELLPRODUCT_DTA_SERIA_SERIAL1" />
+        <AssociationConnector Association="gamingstoreModel.FK_SUPPLIER_PHONE_SUPPLIER" />
+        <AssociationConnector Association="gamingstoreModel.C_PosInRoles" />
+        <AssociationConnector Association="gamingstoreModel.CLAIMORDER_MEMBER" />
+        <AssociationConnector Association="gamingstoreModel.CLAIMORDER_SHOP_CHANGE7DAY" />
+        <AssociationConnector Association="gamingstoreModel.CLAIMORDER_SHOP_H_SERIAL" />
+        <AssociationConnector Association="gamingstoreModel.PROMOTION_PRODUCT_DTA" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

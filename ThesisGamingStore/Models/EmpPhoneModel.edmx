@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EmpPhoneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="_PosInRoles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="PosID" />
+          </Key>
+          <Property Name="RoleID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PosID" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DepID" />
+          </Key>
+          <Property Name="DepID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="DepName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PosID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Idcard" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Fname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Lname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Sex" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Salary" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE_PHONE">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="EmpID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeletePhone" Type="bit" />
+          <Property Name="PhoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POSITION">
+          <Key>
+            <PropertyRef Name="PosID" />
+          </Key>
+          <Property Name="PosID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="DepID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PosName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PosInRoles__Roles">
+          <End Role="_Roles" Type="Self._Roles" Multiplicity="1" />
+          <End Role="_PosInRoles" Type="Self._PosInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="_PosInRoles">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosInRoles_POSITION">
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="_PosInRoles" Type="Self._PosInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POSITION">
+              <PropertyRef Name="PosID" />
+            </Principal>
+            <Dependent Role="_PosInRoles">
+              <PropertyRef Name="PosID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_POSITION">
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POSITION">
+              <PropertyRef Name="PosID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="PosID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_TEL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EMPLOYEE_PHONE" Type="Self.EMPLOYEE_PHONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE_PHONE">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_DEPARTMENT">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DepID" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="DepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmpPhoneDBModelStoreContainer">
+          <EntitySet Name="_PosInRoles" EntityType="Self._PosInRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_Roles" EntityType="Self._Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE_PHONE" EntityType="Self.EMPLOYEE_PHONE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSITION" EntityType="Self.POSITION" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PosInRoles__Roles" Association="Self.FK__PosInRoles__Roles">
+            <End Role="_Roles" EntitySet="_Roles" />
+            <End Role="_PosInRoles" EntitySet="_PosInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosInRoles_POSITION" Association="Self.FK__PosInRoles_POSITION">
+            <End Role="POSITION" EntitySet="POSITION" />
+            <End Role="_PosInRoles" EntitySet="_PosInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_POSITION" Association="Self.FK_EMPLOYEE_POSITION">
+            <End Role="POSITION" EntitySet="POSITION" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_TEL_EMPLOYEE" Association="Self.FK_EMPLOYEE_TEL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="EMPLOYEE_PHONE" EntitySet="EMPLOYEE_PHONE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_DEPARTMENT" Association="Self.FK_POSITION_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmpPhoneDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PosID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Idcard" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salary" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE_PHONE" Relationship="Self.FK_EMPLOYEE_TEL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="EMPLOYEE_PHONE" />
+          <NavigationProperty Name="POSITION" Relationship="EmpPhoneDBModel.FK_EMPLOYEE_POSITION" FromRole="EMPLOYEE" ToRole="POSITION" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE_PHONE">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="EmpID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DeletePhone" Type="Boolean" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_TEL_EMPLOYEE" FromRole="EMPLOYEE_PHONE" ToRole="EMPLOYEE" />
+          <Property Name="PhoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_EMPLOYEE_TEL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="EMPLOYEE_PHONE" Type="Self.EMPLOYEE_PHONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE_PHONE">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmpPhoneEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="EMPLOYEE_PHONE" EntityType="Self.EMPLOYEE_PHONE" />
+          <AssociationSet Name="FK_EMPLOYEE_TEL_EMPLOYEE" Association="Self.FK_EMPLOYEE_TEL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="EMPLOYEE_PHONE" EntitySet="EMPLOYEE_PHONE" />
+          </AssociationSet>
+          <EntitySet Name="POSITION" EntityType="EmpPhoneDBModel.POSITION" />
+          <AssociationSet Name="FK_EMPLOYEE_POSITION" Association="EmpPhoneDBModel.FK_EMPLOYEE_POSITION">
+            <End Role="POSITION" EntitySet="POSITION" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <EntitySet Name="C_Roles" EntityType="EmpPhoneDBModel.C_Roles" />
+          <EntitySet Name="DEPARTMENT" EntityType="EmpPhoneDBModel.DEPARTMENT" />
+          <AssociationSet Name="FK_POSITION_DEPARTMENT" Association="EmpPhoneDBModel.FK_POSITION_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="C_PosInRoles" Association="EmpPhoneDBModel.C_PosInRoles">
+            <End Role="C_Roles" EntitySet="C_Roles" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="POSITION">
+          <Key>
+            <PropertyRef Name="PosID" />
+          </Key>
+          <Property Name="PosID" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DepID" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="PosName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="EmpPhoneDBModel.FK_EMPLOYEE_POSITION" FromRole="POSITION" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="EmpPhoneDBModel.FK_POSITION_DEPARTMENT" FromRole="POSITION" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="C_Roles" Relationship="EmpPhoneDBModel.C_PosInRoles" FromRole="POSITION" ToRole="C_Roles" />
+        </EntityType>
+        <Association Name="FK_EMPLOYEE_POSITION">
+          <End Type="EmpPhoneDBModel.POSITION" Role="POSITION" Multiplicity="1" />
+          <End Type="EmpPhoneDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POSITION">
+              <PropertyRef Name="PosID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="PosID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C_Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="POSITION" Relationship="EmpPhoneDBModel.C_PosInRoles" FromRole="C_Roles" ToRole="POSITION" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DepID" />
+          </Key>
+          <Property Name="DepID" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DepName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="POSITION" Relationship="EmpPhoneDBModel.FK_POSITION_DEPARTMENT" FromRole="DEPARTMENT" ToRole="POSITION" />
+        </EntityType>
+        <Association Name="FK_POSITION_DEPARTMENT">
+          <End Type="EmpPhoneDBModel.DEPARTMENT" Role="DEPARTMENT" Multiplicity="1" />
+          <End Type="EmpPhoneDBModel.POSITION" Role="POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DepID" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="DepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_PosInRoles">
+          <End Type="EmpPhoneDBModel.C_Roles" Role="C_Roles" Multiplicity="*" />
+          <End Type="EmpPhoneDBModel.POSITION" Role="POSITION" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmpPhoneDBModelStoreContainer" CdmEntityContainer="EmpPhoneEntities">
+          <EntitySetMapping Name="EMPLOYEE">
+            <EntityTypeMapping TypeName="EmpPhoneDBModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="PosID" ColumnName="PosID" />
+                <ScalarProperty Name="Idcard" ColumnName="Idcard" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEE_PHONE">
+            <EntityTypeMapping TypeName="EmpPhoneDBModel.EMPLOYEE_PHONE">
+              <MappingFragment StoreEntitySet="EMPLOYEE_PHONE">
+                <ScalarProperty Name="PhoneId" ColumnName="PhoneId" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DeletePhone" ColumnName="DeletePhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSITION">
+            <EntityTypeMapping TypeName="EmpPhoneDBModel.POSITION">
+              <MappingFragment StoreEntitySet="POSITION">
+                <ScalarProperty Name="PosName" ColumnName="PosName" />
+                <ScalarProperty Name="DepID" ColumnName="DepID" />
+                <ScalarProperty Name="PosID" ColumnName="PosID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Roles">
+            <EntityTypeMapping TypeName="EmpPhoneDBModel.C_Roles">
+              <MappingFragment StoreEntitySet="_Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTMENT">
+            <EntityTypeMapping TypeName="EmpPhoneDBModel.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENT">
+                <ScalarProperty Name="DepName" ColumnName="DepName" />
+                <ScalarProperty Name="DepID" ColumnName="DepID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="C_PosInRoles" TypeName="EmpPhoneDBModel.C_PosInRoles" StoreEntitySet="_PosInRoles">
+            <EndProperty Name="POSITION">
+              <ScalarProperty Name="PosID" ColumnName="PosID" />
+            </EndProperty>
+            <EndProperty Name="C_Roles">
+              <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

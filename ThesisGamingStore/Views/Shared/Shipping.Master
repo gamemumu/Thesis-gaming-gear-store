@@ -1,0 +1,639 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="ThesisGamingStore.Models" %>
+<%@ Import Namespace="ThesisGamingStore.Controllers" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+        Home | Gaming Gear 
+    </title>
+    <link href="../../Content/MemberCss/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Content/MemberCss/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../Content/MemberCss/prettyPhoto.css" rel="stylesheet" />
+    <link href="../../Content/MemberCss/price-range.css" rel="stylesheet" />
+    <link href="../../Content/MemberCss/animate.css" rel="stylesheet" />
+    <link href="../../Content/MemberCss/main.css" rel="stylesheet" />
+    <link href="../../Content/MemberCss/responsive.css" rel="stylesheet" />
+    <script src="../../Scripts/js_member/jquery.js"></script>
+    <script src="../../Scripts/js_member/bootstrap.min.js"></script>
+    <script src="../../Scripts/js_member/jquery.scrollUp.min.js"></script>
+    <script src="../../Scripts/js_member/price-range.js"></script>
+    <script src="../../Scripts/js_member/jquery.prettyPhoto.js"></script>
+    <script src="../../Scripts/js_member/main.js"></script>
+    <script src="<%: Url.Content("~/Scripts/numeral.min.js") %>" type="text/javascript"></script>
+       <link href="../../Scripts/bootstrap-lightbox/ekko-lightbox.min.css" rel="stylesheet" />
+    <script src="../../Scripts/bootstrap-lightbox/ekko-lightbox.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<!--/head-->
+<body>
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i>+66 9798 3789</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i>gamemumu@hotmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                            <a href="<%= Url.Action("Index", "Shipping")%>">
+                            <img src="../../images/home/img_logo.png" alt="" height="45" width="139"/></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="shop-menu pull-right">
+                            <ul class="nav navbar-nav">
+                               <%-- <li><a href="#"><i class="fa fa-user"></i>Account</a></li>
+                                <li><a href="#"><i class="fa fa-star"></i>Wishlist</a></li>
+                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i>Checkout</a></li>--%>
+                                <li><a href="/Shipping/Cart" class="aCart_badge"><i class="fa fa-shopping-cart"></i>Cart <span class="badge Cart_badge">0</span></a></li>
+                                <%if (Session["MEmail"] == null && Session["MemID"] == null)
+                                  { %>
+                                <li><a href="/Member/mLogin"><i class="fa fa-lock"></i>Login</a></li>
+                                <li><a href="/Member/SignupMember"><i class="fa fa-user-plus"></i>Register</a></li>
+                                <%}
+                                  else
+                                  { %>
+                                <li><a href="/Member/MListOrder"><i class="fa fa-list-alt"></i>History Order</a></li>
+                                <li><a href="/Member/EditMember"><i class="fa fa-user"></i>Account</a></li>
+                                <li><a href="/Member/mLogout"><i class="fa fa-unlock"></i>Logout</a></li>
+                                <%} %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header-middle-->
+
+    <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="<%= Url.Action("Index", "Shipping")%>" class="active">Home</a></li>
+                                <li class="dropdown"><a href="#">ขั้นตอนการทำรายการสั่งซื้อ<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                       <li><a href="<%= Url.Action("SolutionShipping", "Shipping")%>">วิธีสั่งซื้อสินค้า</a></li>
+                                        <li><a href="<%= Url.Action("SolutionPayMent", "Shipping")%>">วิธีแจ้งชำระเงิน</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="<%= Url.Action("AboutUs", "Shipping")%>"">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+						<div class="search_box pull-right">
+                            <select id="SearchID" name="SearchID" style="width:31%;height:30px;">
+                                <option value="1">ประเภท</option>
+                                <option value="2">ยี่ห้อสินค้า</option>
+                                <option value="3">รุ่นสินค้า</option>
+                                <option value="4">สีสินค้า</option>
+                            </select>
+							<input type="text" placeholder="Search" id="txtSearch" name="txtSearch" style="height:30px;">
+                           <button type="button" class="btn btn-default" onclick="Search()" style="height:30px;"><i class="fa fa-search"></i></button>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <!--/header-bottom-->
+    </header>
+    <!--/header-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Category</h2>
+                        <!--category-productsr-->
+                        <div class="panel-group category-products" id="accordian">
+                        </div>
+                        <!--/category-products-->
+
+
+                        <div class="brands_products">
+                            <!--brands_products-->
+                            <h2>Brands</h2>
+                            <div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked">
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/brands_products-->
+
+
+                        <div class="yourCart simpleCart_items">
+                            <!--shoppingCarts-->
+                            <h2>Items in Your Cart</h2>
+                            <div id="yourCart">
+                                    <%-- add your cart--%>
+                                    <% if (Session["cart"] != null)
+                                       { %>
+                                        <%: Html.Partial("_CartMini") %>
+                                    <%} %>
+                            </div>
+                           
+                        </div>
+                        <!--/shoppingCarts-->
+
+                    </div>
+                </div>
+                <div class="col-sm-9 padding-right">
+                    <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © 2013 GAMING GEAR Inc. All rights reserved.</p>
+                    <p class="pull-right">Designed by <span><a target="_blank" href="#">gamemumu</a></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/Footer-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var Create = "";
+            $.ajax({
+                type: 'Get',
+                url: "<%= Url.Action("JsonCategory","Shipping") %>", // we are calling json method
+                dataType: 'json',
+                success: function (data) {
+                    var temp = ""; var flag = false; var flag_create = true;
+                    $.each(data, function (i, obj) {
+                        //   type เหมือนกัน ไม่ต้อง Create ใส่ li ได้เลย
+                        if (obj.TypeName == temp) {
+                            //ส่ง ประเภท  กับ ยี่ห้อ ไป
+                            Create += '<li><a href="#" onclick=getTrd(\'' + obj.TypeProductID + '\',\'' + obj.TypeName + '\',\'' + obj.TrdID + '\',\'' + obj.TrdName + '\')>' + obj.TrdName + '</a></li>';
+                            flag = true;
+                        } else {
+                            if (flag || flag_create == false) {
+                                Create += '</ul></div></div></div>';
+                                flag = false; flag_create = true;
+                            }
+                            Create += '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title">' +
+                                        '<a data-toggle="collapse" data-parent="#accordian" href="#' + obj.TypeName + '">' +
+                                           '<span class="badge pull-right"><i class="fa fa-plus"></i></span>';
+                            Create += obj.TypeName + '</a></h4></div><div id="' + obj.TypeName + '" class="panel-collapse collapse"><div class="panel-body"><ul>';
+                            if (flag_create) {
+                                Create += '<li><a href="#" onclick=getTrd(\'' + obj.TypeProductID + '\',\'' + obj.TypeName + '\',\'' + obj.TrdID + '\',\'' + obj.TrdName + '\')>' + obj.TrdName + '</a></li>';
+                                flag_create = false;
+                            }
+
+                        }
+                        temp = obj.TypeName;
+                    });
+                    $("#accordian").html(Create)
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve JsonListType' + ex);
+                }
+            });  //category-products-->
+
+            var brand = "";
+            $.ajax({
+                type: 'Get',
+                url: "<%= Url.Action("JsonBrand","Shipping") %>", // we are calling json method
+                dataType: 'json',
+                success: function (data) {
+                    var temp = ""; var flag = false; var flag_create = true;
+                    $.each(data, function (i, obj) {
+                        brand += '<li><a href="#" onClick="getBrd(\'' + obj.TrdID + '\',\'' + obj.TrdName + '\')"><span class="pull-right">(' + obj.Count + ')</span>' + obj.TrdName + '</a></li>';
+                    });
+                    $(".brands-name ul").html(brand);
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve JsonListType' + ex);
+                }
+            });  //brand-->
+            nofi();
+        });//docready
+
+        function Search() {
+            var select = $("#SearchID").val();
+            var action_Select = "";
+            if ($("#txtSearch").val().length == 0 || $("#txtSearch").val() == "") {
+                alert("กรุณากรอกข้อมูลที่ต้องการค้นหา")
+                return;
+            }
+            switch (select) {
+                case "1": action_Select = "<%= Url.Action("JsonSearchType","Shipping") %>"; break;
+                case "2": action_Select = "<%= Url.Action("JsonSearchTrd","Shipping") %>"; break;
+                case "3": action_Select = "<%= Url.Action("JsonSearchBrand","Shipping") %>"; break;
+                case "4": action_Select = "<%= Url.Action("JsonSearchClr","Shipping") %>"; break;
+            }
+            var data_features = ""; var data_features_end = "";
+            var data_old = "";
+            var data_discount = ""; var data_discount_end = "";
+            var ava = "";
+            //###### Feature  && DICOUNT ####
+            $.ajax({
+                type: 'POST',
+                url: action_Select, // we are calling json method
+                dataType: 'json',
+                data: { Name: $("#txtSearch").val()},
+                success: function (data) {
+                    if (data.Oldresult.length == 0 && data.Promotion.length == 0 && data.Results.length == 0) {
+                        alert("ไม่พบข้อมูลที่ค้นหา");
+                        return;
+                    }
+                    $.each(data.Promotion, function (i, obj) {
+                        data_discount += '<div class="col-sm-4 ">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center ">' +
+                                         '<a href="' + obj.Photo1 + '" data-toggle="lightbox"  data-title="' + obj.TrdName + ' ' + obj.BrandName + '  [Amount : ' + obj.TempStock + ']"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price - (obj.Price * (obj.Discount / 100))).format('0,0') + '&nbsp <small><s>' + numeral(obj.Price).format('0,0') + '</s></small></h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_discount += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_discount += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_discount += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button>';
+                            ava = "In Stock";
+                        } else {
+                            data_discount += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart" disabled></i>Out of stock</button>';
+                            ava = "Out Stock";
+                        }
+                        data_discount += '</div>' +
+                                '<img src="../../images/home/sale.png" class="new" alt="">' +
+                               '</div>' +
+                               '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    }); //end Promotion
+                    $.each(data.Results, function (i, obj) {
+                        data_features += '<div class="col-sm-4">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center">' +
+                                              '<a href="' + obj.Photo1 + '" data-toggle="lightbox" data-title="' + obj.TrdName + ' ' + obj.BrandName + '"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price).format('0,0') + '</h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_features += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_features += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_features += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button></div>';
+                            ava = "In Stock";
+                        } else {
+                            data_features += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart"></i>Out of stock</button></div>';
+                            ava = "Out Stock";
+                        }
+                        if (obj.PrdStatus == "สินค้าใหม่") {
+                            data_features += '<img src="../../images/home/new.png" class="new" alt="">';
+                        }
+                        else if (obj.PrdStatus == "สินค้าขายดี") {
+                            data_features += '<img src="../../images/home/best-seo.png" class="new" alt="">';
+                        }
+                        data_features += '</div>' +
+                                    '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    });//end สินค้าขายดี สินค้าใหม่
+                    $.each(data.Oldresult, function (i, obj) {
+                        data_old += '<div class="col-sm-4">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center">' +
+                                              '<a href="' + obj.Photo1 + '" data-toggle="lightbox" data-title="' + obj.TrdName + ' ' + obj.BrandName + '"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price).format('0,0') + '</h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_old += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_old += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_old += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button></div>';
+                            ava = "In Stock";
+                        } else {
+                            data_old += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart"></i>Out of stock</button></div>';
+                            ava = "Out Stock";
+                        }
+                        if (obj.PrdStatus == "สินค้าใหม่") {
+                            data_old += '<img src="../../images/home/new.png" class="new" alt="">';
+                        }
+                        else if (obj.PrdStatus == "สินค้าขายดี") {
+                            data_old += '<img src="../../images/home/best-seo.png" class="new" alt="">';
+                        }
+                        data_old += '</div>' +
+                                    '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    });//end สินค้าเก่า
+                    $(".features_items .title").text("Search data is : " + $("#txtSearch").val());
+                    $(".features_items h2").nextAll().remove();
+                    $(data_discount + data_features + data_old).insertAfter(".features_items h2"); //###### Feature ####
+                }//end success  
+            });
+        }
+
+        function nofi() {
+            $.get("<%= Url.Action("JsonCartCount","Shipping") %>", function (data) {
+                if (data > 0) {
+                    $(".aCart_badge").addClass('active');
+                    $('.Cart_badge').attr('style', 'background-color:#FE980F !important');
+                } else {
+                    $(".aCart_badge").removeClass('active')
+                    $('.Cart_badge').attr('style', 'background-color:none !important');
+                }
+                $('.Cart_badge').text(data);
+            });
+        }
+        function getTrd(TypeProductID, TypeName, TrdID, TrdName) {
+            $(".features_items .title").text(TypeName + " [" + TrdName + "]");
+            var data_features = ""; var data_features_end = "";
+            var data_old = "";
+            var data_discount = ""; var data_discount_end = "";
+            var ava = "";
+            //###### Feature  && DICOUNT ####
+            $.ajax({
+                type: 'POST',
+                url: "<%= Url.Action("JsonDataType","Shipping") %>", // we are calling json method
+                dataType: 'json',
+                data: { TypeProductID: TypeProductID, TrdID: TrdID },
+                success: function (data) {
+                    $.each(data.Promotion, function (i, obj) {
+                        data_discount += '<div class="col-sm-4 ">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center ">' +
+                                         '<a href="' + obj.Photo1 + '" data-toggle="lightbox"  data-title="' + obj.TrdName + ' ' + obj.BrandName + '  [Amount : ' + obj.TempStock + ']"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price - (obj.Price * (obj.Discount / 100))).format('0,0') + '&nbsp <small><s>' + numeral(obj.Price).format('0,0') + '</s></small></h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_discount += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_discount += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_discount += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button>';
+                            ava = "In Stock";
+                        } else {
+                            data_discount += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart" disabled></i>Out of stock</button>';
+                            ava = "Out Stock";
+                        }
+                        data_discount += '</div>' +
+                                '<img src="../../images/home/sale.png" class="new" alt="">' +
+                               '</div>' +
+                               '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    }); //end Promotion
+                    $.each(data.Results, function (i, obj) {
+                        data_features += '<div class="col-sm-4">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center">' +
+                                              '<a href="' + obj.Photo1 + '" data-toggle="lightbox" data-title="' + obj.TrdName + ' ' + obj.BrandName + '"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price).format('0,0') + '</h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_features += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_features += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_features += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button></div>';
+                            ava = "In Stock";
+                        } else {
+                            data_features += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart"></i>Out of stock</button></div>';
+                            ava = "Out Stock";
+                        }
+                        if (obj.PrdStatus == "สินค้าใหม่") {
+                            data_features += '<img src="../../images/home/new.png" class="new" alt="">';
+                        }
+                        else if (obj.PrdStatus == "สินค้าขายดี") {
+                            data_features += '<img src="../../images/home/best-seo.png" class="new" alt="">';
+                        }
+                        data_features += '</div>' +
+                                    '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    });//end สินค้าขายดี สินค้าใหม่
+                    $.each(data.Oldresult, function (i, obj) {
+                        data_old += '<div class="col-sm-4">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center">' +
+                                              '<a href="' + obj.Photo1 + '" data-toggle="lightbox" data-title="' + obj.TrdName + ' ' + obj.BrandName + '"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price).format('0,0') + '</h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_old += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_old += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_old += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button></div>';
+                            ava = "In Stock";
+                        } else {
+                            data_old += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart"></i>Out of stock</button></div>';
+                            ava = "Out Stock";
+                        }
+                        if (obj.PrdStatus == "สินค้าใหม่") {
+                            data_old += '<img src="../../images/home/new.png" class="new" alt="">';
+                        }
+                        else if (obj.PrdStatus == "สินค้าขายดี") {
+                            data_old += '<img src="../../images/home/best-seo.png" class="new" alt="">';
+                        }
+                        data_old += '</div>' +
+                                    '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    });//end สินค้าเก่า
+                    $(".features_items h2").nextAll().remove();
+                    $(data_discount + data_features + data_old).insertAfter(".features_items h2"); //###### Feature ####
+                }//end success  
+            });
+        }
+
+        function getBrd(TrdID, Brnd) {
+            $(".features_items .title").text(Brnd);
+            var data_features = ""; var data_features_end = "";
+            var data_old = "";
+            var data_discount = ""; var data_discount_end = "";
+            var ava = "";
+            //###### Feature  && DICOUNT ####
+            $.ajax({
+                type: 'POST',
+                url: "<%= Url.Action("JsonDataBrand","Shipping") %>", // we are calling json method
+                dataType: 'json',
+                data: { TrdID: TrdID },
+                success: function (data) {
+                    $.each(data.Promotion, function (i, obj) {
+                        data_discount += '<div class="col-sm-4 ">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center ">' +
+                                         '<a href="' + obj.Photo1 + '" data-toggle="lightbox"  data-title="' + obj.TrdName + ' ' + obj.BrandName + '  [Amount : ' + obj.TempStock + ']"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price - (obj.Price * (obj.Discount / 100))).format('0,0') + '&nbsp <small><s>' + numeral(obj.Price).format('0,0') + '</s></small></h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_discount += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_discount += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_discount += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button>';
+                            ava = "In Stock";
+                        } else {
+                            data_discount += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart" disabled></i>Out of stock</button>';
+                            ava = "Out Stock";
+                        }
+                        data_discount += '</div>' +
+                                '<img src="../../images/home/sale.png" class="new" alt="">' +
+                               '</div>' +
+                               '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    }); //end Promotion
+                    $.each(data.Results, function (i, obj) {
+                        data_features += '<div class="col-sm-4">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center">' +
+                                              '<a href="' + obj.Photo1 + '" data-toggle="lightbox" data-title="' + obj.TrdName + ' ' + obj.BrandName + '"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price).format('0,0') + '</h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_features += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_features += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_features += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button></div>';
+                            ava = "In Stock";
+                        } else {
+                            data_features += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart"></i>Out of stock</button></div>';
+                            ava = "Out Stock";
+                        }
+                        if (obj.PrdStatus == "สินค้าใหม่") {
+                            data_features += '<img src="../../images/home/new.png" class="new" alt="">';
+                        }
+                        else if (obj.PrdStatus == "สินค้าขายดี") {
+                            data_features += '<img src="../../images/home/best-seo.png" class="new" alt="">';
+                        }
+                        data_features += '</div>' +
+                                    '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    });//end สินค้าขายดี สินค้าใหม่
+                    $.each(data.Oldresult, function (i, obj) {
+                        data_old += '<div class="col-sm-4">' +
+							'<div class="product-image-wrapper">' +
+								'<div class="single-products">' +
+										'<div class="productinfo text-center">' +
+                                              '<a href="' + obj.Photo1 + '" data-toggle="lightbox" data-title="' + obj.TrdName + ' ' + obj.BrandName + '"> <img src="' + obj.Photo1 + '" height="184" width="128"></a>' +
+											'<h2>฿ ' + numeral(obj.Price).format('0,0') + '</h2>' +
+                                            '<p>' + obj.TrdName + '</p>';
+                        if (obj.BrandName.length > 34) data_old += '<p>' + obj.BrandName.substring(0, 71) + '</p>';
+                        else data_old += '<p>' + obj.BrandName + '<br><br></p>';
+                        if (obj.Status) {
+                            data_old += '<button class="btn btn-default add-to-cart" type="button" onclick="addCart(\'' + obj.PrdID + '\')"><i class="fa fa-shopping-cart"></i>Add to cart</button></div>';
+                            ava = "In Stock";
+                        } else {
+                            data_old += '<button class="btn btn-default add-to-cart" type="button" disabled><i class="fa fa-shopping-cart"></i>Out of stock</button></div>';
+                            ava = "Out Stock";
+                        }
+                        if (obj.PrdStatus == "สินค้าใหม่") {
+                            data_old += '<img src="../../images/home/new.png" class="new" alt="">';
+                        }
+                        else if (obj.PrdStatus == "สินค้าขายดี") {
+                            data_old += '<img src="../../images/home/best-seo.png" class="new" alt="">';
+                        }
+                        data_old += '</div>' +
+                                    '<div class="choose">' +
+									'<ul class="nav nav-pills nav-justified">' +
+                                    	'<li><a href="#">Availability : ' + ava + '</a></li>' +
+										'<li><a href="#">Amount : ' + obj.TempStock + '</a></li>' +
+									'</ul>' +
+								'</div>' +
+                         '</div></div>';
+                    });//end สินค้าเก่า
+                    $(".features_items h2").nextAll().remove();
+                    $(data_discount + data_features + data_old).insertAfter(".features_items h2"); //###### Feature ####
+                }//end success  
+            });
+        }
+
+    </script>
+
+    <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+</body>
+</html>

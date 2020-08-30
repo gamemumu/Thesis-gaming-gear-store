@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="421f50b9ca23430d90ae0ec2c73a907f" Name="Diagram1">
+        <EntityTypeShape EntityType="EmpPhoneDBModel.EMPLOYEE" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpPhoneDBModel.EMPLOYEE_PHONE" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="EmpPhoneDBModel.FK_EMPLOYEE_TEL_EMPLOYEE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EmpPhoneDBModel.POSITION" Width="1.5" PointX="0.75" PointY="5.875" />
+        <AssociationConnector Association="EmpPhoneDBModel.FK_EMPLOYEE_POSITION" />
+        <EntityTypeShape EntityType="EmpPhoneDBModel.C_Roles" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="EmpPhoneDBModel.DEPARTMENT" Width="1.5" PointX="0.75" PointY="11.375" />
+        <AssociationConnector Association="EmpPhoneDBModel.FK_POSITION_DEPARTMENT" />
+        <AssociationConnector Association="EmpPhoneDBModel.C_PosInRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
