@@ -1,4 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿//using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -163,49 +163,49 @@ namespace ThesisGamingStore.Controllers
         }
 
         #region Reports
-        public ActionResult DeliverReport()
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "DeliverReport.rpt"));
-            rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
-            rd.SetParameterValue("DivID", Session["RDlvID"].ToString());
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
-                return File(stream, "application/pdf");
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //public ActionResult DeliverReport()
+        //{
+        //    ReportDocument rd = new ReportDocument();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "DeliverReport.rpt"));
+        //    rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
+        //    rd.SetParameterValue("DivID", Session["RDlvID"].ToString());
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    try
+        //    {
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
 
-        public ActionResult DeliverReportID(string id)
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "DeliverReport.rpt"));
-            rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
-            rd.SetParameterValue("MyParameter", id);
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
-                return File(stream, "application/pdf");
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //public ActionResult DeliverReportID(string id)
+        //{
+        //    ReportDocument rd = new ReportDocument();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "DeliverReport.rpt"));
+        //    rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
+        //    rd.SetParameterValue("MyParameter", id);
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    try
+        //    {
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
         #endregion Reports
     }
 }

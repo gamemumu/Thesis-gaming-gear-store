@@ -1,4 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿//using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -106,27 +106,27 @@ namespace ThesisGamingStore.Controllers
         }
 
         #region Reports
-        public ActionResult OrderReport()
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "OrderReport.rpt"));
-            rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
-            rd.SetParameterValue("OrdID", Session["OrdID"].ToString());
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
-                return File(stream, "application/pdf");
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //public ActionResult OrderReport()
+        //{
+        //    ReportDocument rd = new ReportDocument();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "OrderReport.rpt"));
+        //    rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
+        //    rd.SetParameterValue("OrdID", Session["OrdID"].ToString());
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    try
+        //    {
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
         #endregion Reports
 
         public ActionResult JsonOffApprove(string id)

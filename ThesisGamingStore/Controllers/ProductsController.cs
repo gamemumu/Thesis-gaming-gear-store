@@ -1,5 +1,5 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
+﻿//using CrystalDecisions.CrystalReports.Engine;
+//using CrystalDecisions.Shared;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -1161,42 +1161,42 @@ namespace ThesisGamingStore.Controllers
         #endregion Offer
 
         #region Reports
-        public ActionResult OfferReport(string id)
-        {
-            if (Session["S_EmpID"] != null && Session["S_EmpFname"] != null)
-            {
-                ReportDocument rd = new ReportDocument();
-                rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "OfferReport.rpt"));
-                //ConnectionInfo crConnectionInfo = new ConnectionInfo();
-                //crConnectionInfo.ServerName = "GAMEMUMU"; //Database server or ODBC
-                //crConnectionInfo.DatabaseName = "gamingstore"; // Database name
-                //crConnectionInfo.UserID = "g_root"; // username
-                //crConnectionInfo.Password = "2525"; // password
+        //public ActionResult OfferReport(string id)
+        //{
+        //    if (Session["S_EmpID"] != null && Session["S_EmpFname"] != null)
+        //    {
+        //        ReportDocument rd = new ReportDocument();
+        //        rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "OfferReport.rpt"));
+        //        //ConnectionInfo crConnectionInfo = new ConnectionInfo();
+        //        //crConnectionInfo.ServerName = "GAMEMUMU"; //Database server or ODBC
+        //        //crConnectionInfo.DatabaseName = "gamingstore"; // Database name
+        //        //crConnectionInfo.UserID = "g_root"; // username
+        //        //crConnectionInfo.Password = "2525"; // password
 
-                rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
-                rd.SetParameterValue("OfferID", id);
-                //rd.SetParameterValue("OfferID", Session["ReportOFFID"].ToString());
-                Response.Buffer = false;
-                Response.ClearContent();
-                Response.ClearHeaders();
-                try
-                {
-                    Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                    // stream.Seek(0, SeekOrigin.Begin);
-                    Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
-                    return File(stream, "application/pdf");
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login2", "Account");
-            }
+        //        rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
+        //        rd.SetParameterValue("OfferID", id);
+        //        //rd.SetParameterValue("OfferID", Session["ReportOFFID"].ToString());
+        //        Response.Buffer = false;
+        //        Response.ClearContent();
+        //        Response.ClearHeaders();
+        //        try
+        //        {
+        //            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //            // stream.Seek(0, SeekOrigin.Begin);
+        //            Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
+        //            return File(stream, "application/pdf");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Login2", "Account");
+        //    }
 
-        }
+        //}
         #endregion Reports
 
         class DataDetail

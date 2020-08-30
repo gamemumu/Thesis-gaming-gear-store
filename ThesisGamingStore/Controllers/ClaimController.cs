@@ -1,4 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿//using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data.Objects.SqlClient;
@@ -141,49 +141,49 @@ namespace ThesisGamingStore.Controllers
 
 
         #region Reports
-        public ActionResult MClaimReport()
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "MClaimReport.rpt"));
-            rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
-            //  rd.SetParameterValue("DivID", Session["RDlvID"].ToString());
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
-                return File(stream, "application/pdf");
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //public ActionResult MClaimReport()
+        //{
+        //    ReportDocument rd = new ReportDocument();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "MClaimReport.rpt"));
+        //    rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
+        //    //  rd.SetParameterValue("DivID", Session["RDlvID"].ToString());
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    try
+        //    {
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
 
-        public ActionResult OClaimReport()
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "OClaimReport.rpt"));
-            rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
-            //  rd.SetParameterValue("DivID", Session["RDlvID"].ToString());
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
-                return File(stream, "application/pdf");
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //public ActionResult OClaimReport()
+        //{
+        //    ReportDocument rd = new ReportDocument();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reporting"), "OClaimReport.rpt"));
+        //    rd.SetDatabaseLogon("g_root", "2525", "GAMEMUMU", "gamingstore");
+        //    //  rd.SetParameterValue("DivID", Session["RDlvID"].ToString());
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    try
+        //    {
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=foo.pdf");
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
         #endregion Reports
     }
 }
